@@ -19,7 +19,7 @@ export default function PostList() {
 
   useEffect(() => {
     refetch();
-  }, [currentPage, refetch]);
+  }, [currentPage]);
 
   function handleRefresh() {
     refetch();
@@ -41,7 +41,7 @@ export default function PostList() {
           disabled={currentPage === 1}
           className={styles.backBtn}
         >
-          Назад
+          Prev
         </button>
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
           (page) => (
@@ -60,15 +60,14 @@ export default function PostList() {
           disabled={currentPage === totalPages}
           className={styles.nextBtn}
         >
-          Вперед
+          Next
         </button>
       </div>
     );
   }
 
   if (isLoading) return <p className={styles.loadingMessage}>Loading...</p>;
-  if (error)
-    return <p className={styles.errorMessage}>Error: {error.message}</p>;
+  if (error) return <p className={styles.errorMessage}>Error: {error.error}</p>;
 
   return (
     <div className={styles.testWrapper}>
